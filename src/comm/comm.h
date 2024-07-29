@@ -167,6 +167,20 @@ typedef struct {
   uint64_t offset_time;
 } PointXyzlt;
 
+/* autoware pointcloud type */
+typedef struct {
+  float x;
+  float y;
+  float z;
+  uint8_t intensity;
+  uint8_t return_type;
+  uint16_t channel;
+  float azimuth;
+  float elevation;
+  float distance;
+  uint32_t time;
+} PointXYZIRCAEDT;
+
 typedef struct {
   uint32_t handle;
   uint8_t lidar_type; ////refer to LivoxLidarType
