@@ -28,6 +28,8 @@
 #include <cstdio>
 #include <arpa/inet.h>
 
+#include <string>
+
 namespace livox_ros {
 
 ParseCfgFile::ParseCfgFile(const std::string& path) : path_(path) {}
