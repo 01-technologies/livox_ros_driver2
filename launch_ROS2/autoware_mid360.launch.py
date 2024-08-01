@@ -16,7 +16,7 @@ cmdline_bd_code = 'livox0000000001'
 cur_path = os.path.split(os.path.realpath(__file__))[0] + '/'
 cur_config_path = cur_path + '../config'
 rviz_config_path = os.path.join(cur_config_path, 'display_point_cloud_ROS2.rviz')
-user_config_path = os.path.join(cur_config_path, 'dual_MID360_config.json')
+user_config_path = os.path.join(cur_config_path, 'autoware_MID360_config.json')
 ################### user configure parameters for ros2 end #####################
 
 livox_ros2_params = [
@@ -38,7 +38,11 @@ def generate_launch_description():
         executable='livox_ros_driver2_node',
         name='livox_lidar_publisher',
         output='screen',
-        parameters=livox_ros2_params
+        parameters=livox_ros2_params,
+        remappings=[
+            ('livox/lidar_192_168_1_156', 'top/livox_pointcloud_raw'),
+            ('livox/lidar_192_168_1_199', 'bottom/livox_pointcloud_raw'),
+        ]
         )
     
     livox_rviz = Node(
@@ -50,7 +54,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         livox_driver,
-        livox_rviz,
+        # livox_rviz,
         # launch.actions.RegisterEventHandler(
         #     event_handler=launch.event_handlers.OnProcessExit(
         #         target_action=livox_rviz,
