@@ -312,7 +312,7 @@ void Lddc::InitPointcloud2MsgHeader(PointCloud2& cloud, const std::string& frame
   cloud.fields[8].datatype = PointField::FLOAT32;
 
   cloud.fields[9].offset = 28;
-  cloud.fields[9].name = "time";
+  cloud.fields[9].name = "time_stamp";
   cloud.fields[9].count = 1;
   cloud.fields[9].datatype = PointField::UINT32;
 
@@ -359,7 +359,7 @@ void Lddc::InitPointcloud2Msg(const StoragePacket& pkg, PointCloud2& cloud, uint
     point.azimuth = atan2(pkg.points[i].y, pkg.points[i].x);
     point.elevation = atan2(pkg.points[i].z, (hypot(pkg.points[i].x, pkg.points[i].y)));
     point.distance = hypot(pkg.points[i].x, pkg.points[i].y, pkg.points[i].z);
-    point.time = static_cast<uint32_t>(pkg.points[i].offset_time);
+    point.time_stamp = static_cast<uint32_t>(pkg.points[i].offset_time);
     points.push_back(std::move(point));
   }
   // cloud.data.resize(pkg.points_num * sizeof(LivoxPointXyzrtlt));
