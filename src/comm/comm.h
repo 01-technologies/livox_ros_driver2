@@ -178,7 +178,7 @@ typedef struct {
   float azimuth;
   float elevation;
   float distance;
-  uint32_t time;
+  uint32_t time_stamp;
 } PointXYZIRCAEDT;
 
 typedef struct {
